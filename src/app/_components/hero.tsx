@@ -4,7 +4,7 @@ import heroImage from "../../../public/images/hero1.jpeg";
 
 const Hero = () => {
     return (
-        <div className={styles.hero}>
+        <section className={styles.hero}>
             <h2 className={styles.hero_title}>
                 <div className={styles.hero_big_text}>Front-end</div>
                 <div className={styles.hero_big_text}>Developer</div>
@@ -20,7 +20,7 @@ const Hero = () => {
                     <div className={styles.hero_big_text}>Yefymov</div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

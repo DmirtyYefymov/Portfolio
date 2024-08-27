@@ -1,0 +1,18 @@
+.about {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 70px;
+}
+
+.about_text {
+    text-transform: uppercase;
+    font-size: var(--lg-paragraph-text);
+    line-height: 1.25;
+}
+
+.about_descr {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 70%;
+}
