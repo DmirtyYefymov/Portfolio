@@ -1,0 +1,38 @@
+.hero {
+    padding: 70px 0;
+}
+
+.hero_title {
+    font-weight: 500;
+}
+
+.hero_big_text {
+    position: relative;
+    font-size: var(--title-1);
+    line-height: .875;
+    text-transform: uppercase;
+}
+
+.hero_name {
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.image_container {
+    width: 600px;
+    height: 400px;
+}
+
+.hero_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 35px;
+}
+
+.image_container img {
+    width: 100%;
+    height: 100%;
+}
