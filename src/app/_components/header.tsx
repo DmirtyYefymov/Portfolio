@@ -14,13 +14,13 @@ const Header = () => {
                     <Link className={styles.header_navLink} href="#about">
                         About
                     </Link>
-                    <Link className={styles.header_navLink} href="/posts">
+                    <Link className={styles.header_navLink} href="#blog">
                         Blog
                     </Link>
-                    <Link className={styles.header_navLink} href="/work">
+                    <Link className={styles.header_navLink} href="#work">
                         Work
                     </Link>
-                    <Link className={styles.header_navLink} href="/contact">
+                    <Link className={styles.header_navLink} href="#contact">
                         Contact
                     </Link>
                 </div>
