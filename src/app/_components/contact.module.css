@@ -1,0 +1,28 @@
+.contact {
+    padding: 140px 0;
+}
+
+.contact_title {
+    display: flex;
+    gap: 70px;
+    justify-content: flex-start;
+    text-transform: uppercase;
+    padding-bottom: 35px;
+}
+
+.contact_text {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.contact_email {
+    margin-top: 120px;
+}
+
+.big_text {
+    position: relative;
+    font-size: var(--title-1);
+    line-height: .875;
+    text-transform: uppercase;
+}

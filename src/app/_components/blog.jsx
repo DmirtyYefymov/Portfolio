@@ -7,10 +7,10 @@ const Blog = () => {
     return (
         <section className={styles.blog} id="blog">
             <div className={styles.blog_header}>
-                <h4 className="">02/</h4>
+                <h4>02/</h4>
                 <div className={styles.blog_head_text}>
-                    <h4 className="">My Blog</h4>
-                    <h4 className="">More about me</h4>
+                    <h4>My Blog</h4>
+                    <h4>More about me</h4>
                 </div>
                 
             </div>
