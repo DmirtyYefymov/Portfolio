@@ -1,6 +1,6 @@
 import styles from "./hero.module.css";
 import Image from "next/image";
-import heroImage from "../../../public/images/hero1.jpeg";
+import heroImage from "../../../../public/images/hero1.jpeg";
 
 const Hero = () => {
     return (

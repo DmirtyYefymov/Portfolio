@@ -1,4 +1,4 @@
-import { getPostMetadata } from "../../lib/api";
+import { getPostMetadata } from "../../../lib/api";
 import PostPreview from "./postPreview";
 import styles from "./blog.module.css";
 

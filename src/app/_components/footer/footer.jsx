@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Container from "./container";
+import Container from "../container";
 import styles from "./footer.module.css";
 
 const Footer = () => {
