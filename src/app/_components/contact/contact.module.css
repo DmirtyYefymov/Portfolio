@@ -22,7 +22,87 @@
 
 .big_text {
     position: relative;
-    font-size: var(--title-1);
+    font-size: 110px;
     line-height: .875;
     text-transform: uppercase;
+}
+
+
+.contact_count {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.contact_email {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.email_char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+
+.copy_button {
+    position: fixed;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 50%;
+    cursor: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.18;
+    font-weight: 500;
+}
+
+.copy_button.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.copy_button.copied {
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+@media (max-width:1300px) {
+    .big_text {
+        font-size: 85px;
+    }
+}
+
+@media (max-width:1023px) {
+    .big_text {
+        font-size: 60px;
+    }
+}
+
+@media (max-width:767px) {
+    .contact {
+        padding: 70px 0;
+    }
+
+    .big_text {
+        font-size: 45px;
+    }
+}
+
+@media (max-width:520px) {
+
+    .big_text {
+        font-size: 30px;
+    }
 }
