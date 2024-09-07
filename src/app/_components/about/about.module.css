@@ -8,6 +8,10 @@
     text-transform: uppercase;
     font-size: var(--lg-paragraph-text);
     line-height: 1.25;
+    opacity: 0;
+    /* Початковий стан - елемент невидимий */
+    transform: translateY(50px);
+    /* Початкова позиція */
 }
 
 .about_descr {

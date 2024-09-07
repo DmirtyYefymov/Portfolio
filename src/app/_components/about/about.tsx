@@ -1,6 +1,34 @@
+"use client";
+import { useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./about.module.css";
 
 const About = () => {
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.fromTo(
+            `.${styles.about_text}`,
+            {
+                opacity: 0,
+                y: 50,
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.3,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: `#about`,
+                    start: "top 80%",
+                    toggleActions: "play none none none",
+                },
+            }
+        );
+    }, []);
+
     return (
         <section id="about" className={styles.about}>
             <div className={styles.about_title}>
