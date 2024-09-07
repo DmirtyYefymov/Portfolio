@@ -10,15 +10,18 @@
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
+    "gsap": "^3.12.5",
     "markdown-to-jsx": "^7.5.0",
     "next": "14.2.5",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "three": "^0.168.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/three": "^0.167.2",
     "autoprefixer": "^10.4.20",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
