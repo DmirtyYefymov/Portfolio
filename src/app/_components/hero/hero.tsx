@@ -39,7 +39,7 @@ const Hero = () => {
     }, []);
 
     return (
-        <section className={styles.hero}>
+        <section className={styles.hero} id="home">
             <h2 className={styles.hero_title}>
                 <div className={styles.line}>
                     <span className={styles.char}>F</span>

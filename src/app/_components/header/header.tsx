@@ -1,25 +1,66 @@
-import Link from "next/link";
+"use client";
+
+import { useEffect, useState } from "react";
+import { Link as ScrollLink } from "react-scroll";
 import Container from "../container";
 import styles from "./header.module.css";
 
 const Header = () => {
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const offset = window.scrollY;
+            if (offset > 50) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     return (
-        <div className={styles.header}>
+        <div className={`${styles.header}`}>
             <Container>
                 <div className={styles.header_wrap}>
                     <div className={styles.header_text}>Dmytro Yefymov</div>
-                    <Link className={styles.header_navLink} href="/">
+                    <ScrollLink
+                        to="home"
+                        smooth={true}
+                        duration={500}
+                        className={styles.header_navLink}
+                    >
                         Home
-                    </Link>
-                    <Link className={styles.header_navLink} href="#about">
+                    </ScrollLink>
+                    <ScrollLink
+                        to="about"
+                        smooth={true}
+                        duration={500}
+                        className={styles.header_navLink}
+                    >
                         About
-                    </Link>
-                    <Link className={styles.header_navLink} href="#blog">
+                    </ScrollLink>
+                    <ScrollLink
+                        to="blog"
+                        smooth={true}
+                        duration={500}
+                        className={styles.header_navLink}
+                    >
                         Blog
-                    </Link>
-                    <Link className={styles.header_navLink} href="#contact">
+                    </ScrollLink>
+                    <ScrollLink
+                        to="contact"
+                        smooth={true}
+                        duration={500}
+                        className={styles.header_navLink}
+                    >
                         Contact
-                    </Link>
+                    </ScrollLink>
                 </div>
             </Container>
         </div>

@@ -9,6 +9,8 @@
 
 .header_navLink {
     position: relative;
+    cursor: pointer;
+    mix-blend-mode: difference;
 }
 
 .header_navLink:after {
@@ -40,4 +42,14 @@
     -webkit-transform-origin: left;
     -moz-transform-origin: left;
     transform-origin: left;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: transparent;
+    padding: 10px 0;
 }
