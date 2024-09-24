@@ -25,7 +25,9 @@ const Header = () => {
     }, []);
 
     return (
-        <div className={`${styles.header}`}>
+        <div
+            className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}
+        >
             <Container>
                 <div className={styles.header_wrap}>
                     <div className={styles.header_text}>Dmytro Yefymov</div>

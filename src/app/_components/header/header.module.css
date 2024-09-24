@@ -4,13 +4,18 @@
     align-items: center;
     font-size: var(--title-4);
     font-weight: 500;
-    height: 90px;
+    height: 60px;
 }
 
 .header_navLink {
     position: relative;
     cursor: pointer;
-    mix-blend-mode: difference;
+    color: var(--black);
+}
+
+.header.scrolled {
+    background-color: rgba(225, 223, 221, 1);
+    box-shadow: 0 4px 2px -2px gray;
 }
 
 .header_navLink:after {
@@ -52,4 +57,10 @@
     transition: background-color 0.3s ease, color 0.3s ease;
     background-color: transparent;
     padding: 10px 0;
+}
+
+@media (max-width:767px) {
+    .header_wrap div {
+        display: none;
+    }
 }

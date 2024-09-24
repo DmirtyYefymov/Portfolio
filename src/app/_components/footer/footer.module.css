@@ -7,6 +7,11 @@
     height: 90px;
 }
 
+.footer_navLink_wrapp {
+    display: flex;
+    gap: 75px;
+}
+
 .footer_navLink {
     position: relative;
 }
@@ -40,4 +45,20 @@
     -webkit-transform-origin: left;
     -moz-transform-origin: left;
     transform-origin: left;
+}
+
+@media (max-width:767px) {
+    .footer_wrap {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        gap: 25px;
+        padding: 40px 0;
+    }
+
+    .footer_navLink_wrapp {
+        width: 100%;
+        justify-content: space-between;
+        gap: 0px;
+    }
 }
