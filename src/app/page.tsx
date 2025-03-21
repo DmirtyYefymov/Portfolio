@@ -11,7 +11,7 @@ export default function Home() {
             <Container>
                 <Hero />
                 <About />
-                <Blog />
+                {/* <Blog /> */}
                 <Contact />
             </Container>
         </main>

@@ -81,7 +81,7 @@ const Contact: React.FC = () => {
     return (
         <section id="contact" className={styles.contact}>
             <div className={styles.contact_title}>
-                <h4 className={styles.contact_count}>03/</h4>
+                <h4 className={styles.contact_count}>02/</h4>
                 <div className={styles.contact_text}>
                     <h4>
                         Want to work <br /> together?

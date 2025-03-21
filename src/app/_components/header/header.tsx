@@ -52,14 +52,14 @@ const Header = () => {
                             >
                                 About
                             </ScrollLink>
-                            <ScrollLink
+                            {/* <ScrollLink
                                 to="blog"
                                 smooth={true}
                                 duration={500}
                                 className={styles.header_navLink}
                             >
                                 Blog
-                            </ScrollLink>
+                            </ScrollLink> */}
                             <ScrollLink
                                 to="contact"
                                 smooth={true}
