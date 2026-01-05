@@ -4,7 +4,7 @@ subtitle: "About my life and career"
 date: "03.10.2024"
 ---
 
-# Hi, I'm Dima - Front-End Developer 👋
+# Hi, I'm Dmytro - Front-End Developer 👋
 
 Very nice to meet you! In this blog, I will tell you about myself, my experience, and my thoughts.
 
