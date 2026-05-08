@@ -2,24 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-
-@font-face {
-    font-family: 'PP Neue Montreal', sans-serif;
-    src: url("../../public/fonts/PPNeueMontreal-Medium.woff2") format("woff2");
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
 html,
 body {
     padding: 0;
     margin: 0;
-    font-family: "PP Neue Montreal", -apple-system, BlinkMacSystemFont, Segoe UI,
-        Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-        sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+section[id] {
+    scroll-margin-top: 90px;
 }
 
 body {
@@ -30,14 +22,12 @@ body {
 * {
     padding: 0;
     margin: 0;
-    font-family: "PP Neue Montreal", -apple-system, BlinkMacSystemFont, Segoe UI,
-        Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-        sans-serif;
+    font-family: inherit;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 
-    &:before,
-    &:after {
+    &::before,
+    &::after {
         box-sizing: border-box;
         -webkit-tap-highlight-color: transparent;
     }
@@ -97,12 +87,12 @@ p {
     --main-color: var(--black);
     --transparent-white: rgba(255, 255, 255, 0.4225);
 
-    --title-1: 56px;
+    --title-1: 46px;
     --title-2: 20px;
     --title-3: 30px;
     --title-4: 20px;
     --paragraph-text: 20px;
-    --lg-paragraph-text: 30px;
+    --lg-paragraph-text: 20px;
     --lg-description-text: 32px;
     --accordion-item-number: 20px;
     --mobile-click-area-text: 22px;
@@ -136,7 +126,7 @@ p {
         --title-2: 40px;
         --title-4: 22px;
         --paragraph-text: 22px;
-        --lg-paragraph-text: 40px;
+        --lg-paragraph-text: 30px;
     }
 
     @media screen and (min-width: 1380px) {

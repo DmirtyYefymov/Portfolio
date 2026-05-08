@@ -1,244 +1,133 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Link as ScrollLink } from "react-scroll";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useScrollPosition } from "@/hooks";
+import { NAV_ITEMS, SITE_NAME } from "@/constants/navigation";
+import { cn } from "@/lib/utils";
 import Container from "../container";
 import styles from "./header.module.css";
 
 const Header = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+    const { isScrolled } = useScrollPosition(50);
     const pathname = usePathname();
+    const isHomePage = pathname === "/";
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const offset = window.scrollY;
-            setIsScrolled(offset > 50);
-        };
+    const toggleMobileMenu = useCallback(() => {
+        setIsMobileMenuOpen((prev) => !prev);
+    }, []);
 
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
+    const closeMobileMenu = useCallback(() => {
+        setIsMobileMenuOpen(false);
     }, []);
 
     useEffect(() => {
-        if (isMobileMenuOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "auto";
-        }
-
+        document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
         return () => {
             document.body.style.overflow = "auto";
         };
     }, [isMobileMenuOpen]);
 
-    const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
-
-    const closeMobileMenu = () => {
-        setIsMobileMenuOpen(false);
-    };
-
-    const isHomePage = pathname === "/";
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") closeMobileMenu();
+        };
+        document.addEventListener("keydown", handleKeyDown);
+        return () => document.removeEventListener("keydown", handleKeyDown);
+    }, [closeMobileMenu]);
 
     return (
         <>
-            <div
-                className={`${styles.header} ${
-                    isScrolled ? styles.scrolled : ""
-                }`}
+            <header
+                className={cn(styles.header, isScrolled && styles.scrolled)}
             >
                 <Container>
                     <div className={styles.header_wrap}>
-                        <a href="/" className={styles.header_text}>
-                            Dmytro Yefymov
-                        </a>
-                        {isHomePage ? (
-                            <>
-                                <ScrollLink
-                                    to="home"
-                                    smooth={true}
-                                    duration={500}
-                                    className={styles.header_navLink}
-                                >
-                                    Home
-                                </ScrollLink>
-                                <ScrollLink
-                                    to="about"
-                                    smooth={true}
-                                    duration={500}
-                                    className={styles.header_navLink}
-                                >
-                                    About
-                                </ScrollLink>
-                                {/* <ScrollLink
-                                    to="blog"
-                                    smooth={true}
-                                    duration={500}
-                                    className={styles.header_navLink}
-                                >
-                                    Blog
-                                </ScrollLink> */}
-                                <ScrollLink
-                                    to="contact"
-                                    smooth={true}
-                                    duration={500}
-                                    className={styles.header_navLink}
-                                >
-                                    Contact
-                                </ScrollLink>
+                        <Link href="/" className={styles.header_text}>
+                            {SITE_NAME}
+                        </Link>
 
-                                {!isMobileMenuOpen && (
-                                    <div
-                                        className={`${styles.burger}`}
-                                        onClick={toggleMobileMenu}
+                        <nav className={styles.header_nav}>
+                            {NAV_ITEMS.map((item) =>
+                                isHomePage ? (
+                                    <ScrollLink
+                                        key={item.to}
+                                        to={item.to}
+                                        smooth
+                                        duration={500}
+                                        offset={-50}
+                                        className={styles.header_navLink}
                                     >
-                                        <div
-                                            className={styles.burger_line}
-                                        ></div>
-                                        <div
-                                            className={styles.burger_line}
-                                        ></div>
-                                        <div
-                                            className={styles.burger_line}
-                                        ></div>
-                                    </div>
-                                )}
-                            </>
-                        ) : (
-                            <>
-                                <a
-                                    href="/#home"
-                                    className={styles.header_navLink}
-                                >
-                                    Home
-                                </a>
-                                <a
-                                    href="/#about"
-                                    className={styles.header_navLink}
-                                >
-                                    About
-                                </a>
-                                {/* <a
-                                    href="/#blog"
-                                    className={styles.header_navLink}
-                                >
-                                    Blog
-                                </a> */}
-                                <a
-                                    href="/#contact"
-                                    className={styles.header_navLink}
-                                >
-                                    Contact
-                                </a>
+                                        {item.label}
+                                    </ScrollLink>
+                                ) : (
+                                    <Link
+                                        key={item.to}
+                                        href={`/#${item.to}`}
+                                        className={styles.header_navLink}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                )
+                            )}
+                        </nav>
 
-                                {!isMobileMenuOpen && (
-                                    <div
-                                        className={`${styles.burger}`}
-                                        onClick={toggleMobileMenu}
-                                    >
-                                        <div
-                                            className={styles.burger_line}
-                                        ></div>
-                                        <div
-                                            className={styles.burger_line}
-                                        ></div>
-                                        <div
-                                            className={styles.burger_line}
-                                        ></div>
-                                    </div>
-                                )}
-                            </>
-                        )}
+                        <button
+                            className={cn(
+                                styles.burger,
+                                isMobileMenuOpen && styles.active
+                            )}
+                            onClick={toggleMobileMenu}
+                            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                            aria-expanded={isMobileMenuOpen}
+                            aria-controls="mobile-menu"
+                        >
+                            <span className={styles.burger_line} />
+                            <span className={styles.burger_line} />
+                            <span className={styles.burger_line} />
+                        </button>
                     </div>
                 </Container>
-            </div>
+            </header>
 
             <div
-                className={`${styles.mobile_menu} ${
-                    isMobileMenuOpen ? styles.active : ""
-                }`}
-            >
-                {isMobileMenuOpen && (
-                    <div
-                        className={`${styles.burger} ${styles.active} ${styles.burger_fixed}`}
-                        onClick={toggleMobileMenu}
-                    >
-                        <div className={styles.burger_line}></div>
-                        <div className={styles.burger_line}></div>
-                        <div className={styles.burger_line}></div>
-                    </div>
+                id="mobile-menu"
+                className={cn(
+                    styles.mobile_menu,
+                    isMobileMenuOpen && styles.active
                 )}
-
-                <div className={styles.mobile_nav}>
-                    {isHomePage ? (
-                        <>
+                aria-hidden={!isMobileMenuOpen}
+                inert={!isMobileMenuOpen ? "" : undefined}
+            >
+                <nav className={styles.mobile_nav} aria-label="Mobile navigation">
+                    {NAV_ITEMS.map((item) =>
+                        isHomePage ? (
                             <ScrollLink
-                                to="home"
-                                smooth={true}
+                                key={item.to}
+                                to={item.to}
+                                smooth
                                 duration={500}
+                                offset={-90}
                                 className={styles.mobile_nav_link}
                                 onClick={closeMobileMenu}
                             >
-                                Home
+                                {item.label}
                             </ScrollLink>
-                            <ScrollLink
-                                to="about"
-                                smooth={true}
-                                duration={500}
+                        ) : (
+                            <Link
+                                key={item.to}
+                                href={`/#${item.to}`}
                                 className={styles.mobile_nav_link}
                                 onClick={closeMobileMenu}
                             >
-                                About
-                            </ScrollLink>
-                            <ScrollLink
-                                to="contact"
-                                smooth={true}
-                                duration={500}
-                                className={styles.mobile_nav_link}
-                                onClick={closeMobileMenu}
-                            >
-                                Contact
-                            </ScrollLink>
-                        </>
-                    ) : (
-                        <>
-                            <a
-                                href="/#home"
-                                className={styles.mobile_nav_link}
-                                onClick={closeMobileMenu}
-                            >
-                                Home
-                            </a>
-                            <a
-                                href="/#about"
-                                className={styles.mobile_nav_link}
-                                onClick={closeMobileMenu}
-                            >
-                                About
-                            </a>
-                            {/* <a
-                                href="/#blog"
-                                className={styles.mobile_nav_link}
-                                onClick={closeMobileMenu}
-                            >
-                                Blog
-                            </a> */}
-                            <a
-                                href="/#contact"
-                                className={styles.mobile_nav_link}
-                                onClick={closeMobileMenu}
-                            >
-                                Contact
-                            </a>
-                        </>
+                                {item.label}
+                            </Link>
+                        )
                     )}
-                </div>
+                </nav>
             </div>
         </>
     );

@@ -16,7 +16,7 @@
     position: relative;
 }
 
-.footer_navLink:after {
+.footer_navLink::after {
     content: "";
     position: absolute;
     right: 0;
@@ -25,29 +25,17 @@
     display: inline-block;
     height: 1px;
     background: var(--black);
-    -webkit-transform: scaleX(0);
-    -moz-transform: scaleX(0);
     transform: scaleX(0);
-    -webkit-transform-origin: right;
-    -moz-transform-origin: right;
     transform-origin: right;
-    -webkit-transition: -webkit-transform .65s var(--primary-curve);
-    transition: -webkit-transform .65s var(--primary-curve);
-    -moz-transition: transform .65s var(--primary-curve), -moz-transform .65s var(--primary-curve);
-    transition: transform .65s var(--primary-curve);
-    transition: transform .65s var(--primary-curve), -webkit-transform .65s var(--primary-curve), -moz-transform .65s var(--primary-curve);
+    transition: transform 0.65s var(--primary-curve);
 }
 
-.footer_navLink:hover:after {
-    -webkit-transform: var(--base-scale3d);
-    -moz-transform: var(--base-scale3d);
+.footer_navLink:hover::after {
     transform: var(--base-scale3d);
-    -webkit-transform-origin: left;
-    -moz-transform-origin: left;
     transform-origin: left;
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .footer_wrap {
         flex-direction: column;
         align-items: flex-start;
@@ -59,6 +47,6 @@
     .footer_navLink_wrapp {
         width: 100%;
         justify-content: space-between;
-        gap: 0px;
+        gap: 0;
     }
 }
