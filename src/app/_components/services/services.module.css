@@ -1,0 +1,154 @@
+.services {
+    padding-top: 150px;
+}
+
+.services_header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 60px;
+}
+
+.services_count {
+    width: 150px;
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    padding-top: 6px;
+}
+
+.services_heading {
+    font-size: var(--title-1);
+    font-weight: 500;
+    line-height: 0.875;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(60px);
+}
+
+.accordion {
+    width: 100%;
+    padding-left: 150px;
+    box-sizing: border-box;
+}
+
+.accordion_divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--black);
+    opacity: 0.2;
+}
+
+.accordion_item {
+    width: 100%;
+}
+
+.accordion_trigger {
+    display: grid;
+    grid-template-columns: 150px 1fr 40px;
+    align-items: center;
+    width: 100%;
+    padding: 30px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    color: var(--black);
+    gap: 0;
+}
+
+.accordion_number {
+    font-size: var(--paragraph-text);
+    font-weight: 500;
+    opacity: 0.5;
+}
+
+.accordion_title {
+    font-size: var(--paragraph-text);
+    font-weight: 500;
+}
+
+.accordion_icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+    justify-self: end;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.accordion_panel {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 0 0 150px;
+}
+
+.accordion_panel.open {
+    max-height: 300px;
+    padding: 0 0 40px 150px;
+}
+
+.accordion_description {
+    font-size: var(--paragraph-text);
+    line-height: 1.5;
+    max-width: 500px;
+}
+
+@media (max-width: 1023px) {
+    .services {
+        padding-top: 100px;
+    }
+
+    .services_header {
+        margin-bottom: 40px;
+    }
+
+    .services_count {
+        width: 80px;
+    }
+
+    .accordion {
+        padding-left: 80px;
+    }
+
+    .accordion_trigger {
+        grid-template-columns: 80px 1fr 32px;
+    }
+
+    .accordion_panel {
+        padding-left: 80px;
+    }
+
+    .accordion_panel.open {
+        padding: 0 0 32px 80px;
+    }
+}
+
+@media (max-width: 767px) {
+    .services {
+        padding-top: 70px;
+    }
+
+    .services_header {
+        margin-bottom: 28px;
+    }
+
+    .services_count {
+        width: 50px;
+    }
+
+    .accordion {
+        padding-left: 50px;
+    }
+
+    .accordion_trigger {
+        grid-template-columns: 50px 1fr 28px;
+        padding: 20px 0;
+    }
+
+    .accordion_panel {
+        padding-left: 50px;
+    }
+
+    .accordion_panel.open {
+        padding: 0 0 24px 50px;
+    }
+}
