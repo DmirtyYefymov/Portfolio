@@ -1,21 +1,28 @@
 "use client";
-import { useEffect, useState } from "react";
+
+import { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useMediaQuery, useMousePosition } from "@/hooks";
+import { CONTACT_EMAIL } from "@/constants/navigation";
+import { cn } from "@/lib/utils";
 import styles from "./contact.module.css";
-import { MousePosition } from "@/interfaces/mousePosition";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Contact: React.FC = () => {
-    const [mousePos, setMousePos] = useState<MousePosition>({ x: 0, y: 0 });
-    const [isHovered, setIsHovered] = useState<boolean>(false);
-    const [isCopied, setIsCopied] = useState<boolean>(false);
-    const [isDesktop, setIsDesktop] = useState<boolean>(true);
+    const sectionRef = useRef<HTMLElement>(null);
+    const emailRef = useRef<HTMLAnchorElement>(null);
+    const [isCopied, setIsCopied] = useState(false);
+    const isDesktop = useMediaQuery("(min-width: 768px)");
+    const { mousePos, isHovered, handleMouseMove, resetHover } = useMousePosition();
 
     useEffect(() => {
-        gsap.registerPlugin(ScrollTrigger);
+        if (!emailRef.current) return;
 
-        gsap.fromTo(
-            `.${styles.email_char}`,
+        const chars = emailRef.current.querySelectorAll(`.${styles.email_char}`);
+        const animation = gsap.fromTo(
+            chars,
             { opacity: 0, y: 50 },
             {
                 opacity: 1,
@@ -23,65 +30,40 @@ const Contact: React.FC = () => {
                 stagger: 0.05,
                 ease: "power2.out",
                 scrollTrigger: {
-                    trigger: `#contact`,
+                    trigger: sectionRef.current,
                     start: "top 80%",
                     toggleActions: "play none none none",
                 },
             }
         );
 
-        const checkScreenWidth = () => {
-            if (window.innerWidth >= 768) {
-                setIsDesktop(true);
-            } else {
-                setIsDesktop(false);
-            }
-        };
-        checkScreenWidth();
-
-        window.addEventListener("resize", checkScreenWidth);
-
         return () => {
-            window.removeEventListener("resize", checkScreenWidth);
+            animation.scrollTrigger?.kill();
         };
     }, []);
 
-    const handleMouseMove = (
-        e: React.MouseEvent<HTMLDivElement, MouseEvent>
-    ): void => {
+    const copyToClipboard = useCallback((): void => {
         if (!isDesktop) return;
-
-        setMousePos({ x: e.clientX, y: e.clientY });
-
-        const element = e.currentTarget.getBoundingClientRect();
-        const isOutside =
-            e.clientX < element.left ||
-            e.clientX > element.right ||
-            e.clientY < element.top ||
-            e.clientY > element.bottom;
-
-        if (isOutside) {
-            setIsHovered(false);
-        } else {
-            setIsHovered(true);
-        }
-    };
-
-    const copyToClipboard = (): void => {
-        if (!isDesktop) return;
-        const email = "hello.dmytro.yefymov@gmail.com";
-        navigator.clipboard.writeText(email).then(() => {
+        navigator.clipboard.writeText(CONTACT_EMAIL).then(() => {
             setIsCopied(true);
-            setTimeout(() => {
-                setIsCopied(false);
-            }, 1000);
+            setTimeout(() => setIsCopied(false), 1000);
+        }).catch(() => {
         });
-    };
+    }, [isDesktop]);
+
+    const emailParts = CONTACT_EMAIL.split("@");
+    const beforeAt = emailParts[0];
+    const afterAt = `@${emailParts[1]}`;
 
     return (
-        <section id="contact" className={styles.contact}>
+        <section
+            id="contact"
+            ref={sectionRef}
+            className={styles.contact}
+            aria-label="Contact"
+        >
             <div className={styles.contact_title}>
-                <h4 className={styles.contact_count}>02/</h4>
+                <h4 className={styles.contact_count}>03/</h4>
                 <div className={styles.contact_text}>
                     <h4>
                         Want to work <br /> together?
@@ -94,20 +76,23 @@ const Contact: React.FC = () => {
             <div
                 className={styles.contact_email}
                 onMouseMove={isDesktop ? handleMouseMove : undefined}
+                onMouseLeave={isDesktop ? resetHover : undefined}
             >
                 <div className={styles.email_text}>
                     <a
+                        ref={emailRef}
                         className={styles.big_text}
-                        href="mailto:hello.dmytro.yefymov@gmail.com"
+                        href={`mailto:${CONTACT_EMAIL}`}
+                        aria-label={`Send email to ${CONTACT_EMAIL}`}
                     >
-                        {Array.from("hello.dmytro").map((char, index) => (
-                            <span key={index} className={styles.email_char}>
+                        {Array.from(beforeAt).map((char, index) => (
+                            <span key={`b-${index}`} className={styles.email_char}>
                                 {char}
                             </span>
                         ))}
                         <br />
-                        {Array.from("yefymov@gmail.com").map((char, index) => (
-                            <span key={index} className={styles.email_char}>
+                        {Array.from(afterAt).map((char, index) => (
+                            <span key={`a-${index}`} className={styles.email_char}>
                                 {char}
                             </span>
                         ))}
@@ -115,11 +100,15 @@ const Contact: React.FC = () => {
                 </div>
                 {isDesktop && (
                     <div
-                        className={`${styles.copy_button} ${
-                            isHovered ? styles.show : ""
-                        } ${isCopied ? styles.copied : ""}`}
+                        className={cn(
+                            styles.copy_button,
+                            isHovered && styles.show,
+                            isCopied && styles.copied
+                        )}
                         style={{ top: mousePos.y, left: mousePos.x }}
                         onClick={copyToClipboard}
+                        role="button"
+                        aria-label="Click to copy email"
                     >
                         {isCopied ? "Done!" : "Click to copy"}
                     </div>
