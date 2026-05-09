@@ -18,10 +18,11 @@ export const metadata: Metadata = {
         template: "%s | Dmytro Yefymov",
     },
     description:
-        "Frontend developer from Ukraine with experience in React, Next.js, and TypeScript. Building modern web applications.",
+        "Frontend developer from Ukraine with experience in React, Vue.js, Next.js, and TypeScript. Building modern web applications.",
     keywords: [
         "Frontend Developer",
         "React",
+        "Vue.js",
         "Next.js",
         "TypeScript",
         "Dmytro Yefymov",
@@ -34,13 +35,13 @@ export const metadata: Metadata = {
         siteName: "Dmytro Yefymov Portfolio",
         title: "Dmytro Yefymov — Frontend Developer",
         description:
-            "Frontend developer from Ukraine with experience in React, Next.js, and TypeScript.",
+            "Frontend developer from Ukraine with experience in React, Vue.js, Next.js, and TypeScript.",
     },
     twitter: {
         card: "summary_large_image",
         title: "Dmytro Yefymov — Frontend Developer",
         description:
-            "Frontend developer from Ukraine with experience in React, Next.js, and TypeScript.",
+            "Frontend developer from Ukraine with experience in React, Vue.js, Next.js, and TypeScript.",
     },
     robots: {
         index: true,
