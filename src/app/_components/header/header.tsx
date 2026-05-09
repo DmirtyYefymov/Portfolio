@@ -81,7 +81,9 @@ const Header = () => {
                                 isMobileMenuOpen && styles.active
                             )}
                             onClick={toggleMobileMenu}
-                            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                            aria-label={
+                                isMobileMenuOpen ? "Close menu" : "Open menu"
+                            }
                             aria-expanded={isMobileMenuOpen}
                             aria-controls="mobile-menu"
                         >
@@ -102,7 +104,10 @@ const Header = () => {
                 aria-hidden={!isMobileMenuOpen}
                 inert={!isMobileMenuOpen || undefined}
             >
-                <nav className={styles.mobile_nav} aria-label="Mobile navigation">
+                <nav
+                    className={styles.mobile_nav}
+                    aria-label="Mobile navigation"
+                >
                     {NAV_ITEMS.map((item) =>
                         isHomePage ? (
                             <ScrollLink

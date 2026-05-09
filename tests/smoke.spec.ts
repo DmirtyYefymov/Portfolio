@@ -27,7 +27,9 @@ test.describe("Home page", () => {
         await expect(link).toBeVisible();
     });
 
-    test("footer social links have rel=noopener noreferrer", async ({ page }) => {
+    test("footer social links have rel=noopener noreferrer", async ({
+        page,
+    }) => {
         const externalLinks = page.locator('a[target="_blank"]');
         const count = await externalLinks.count();
         expect(count).toBeGreaterThan(0);

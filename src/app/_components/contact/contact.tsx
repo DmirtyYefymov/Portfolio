@@ -15,12 +15,15 @@ const Contact: React.FC = () => {
     const emailRef = useRef<HTMLAnchorElement>(null);
     const [isCopied, setIsCopied] = useState(false);
     const isDesktop = useMediaQuery("(min-width: 768px)");
-    const { mousePos, isHovered, handleMouseMove, resetHover } = useMousePosition();
+    const { mousePos, isHovered, handleMouseMove, resetHover } =
+        useMousePosition();
 
     useEffect(() => {
         if (!emailRef.current) return;
 
-        const chars = emailRef.current.querySelectorAll(`.${styles.email_char}`);
+        const chars = emailRef.current.querySelectorAll(
+            `.${styles.email_char}`
+        );
         const animation = gsap.fromTo(
             chars,
             { opacity: 0, y: 50 },
@@ -44,11 +47,13 @@ const Contact: React.FC = () => {
 
     const copyToClipboard = useCallback((): void => {
         if (!isDesktop) return;
-        navigator.clipboard.writeText(CONTACT_EMAIL).then(() => {
-            setIsCopied(true);
-            setTimeout(() => setIsCopied(false), 1000);
-        }).catch(() => {
-        });
+        navigator.clipboard
+            .writeText(CONTACT_EMAIL)
+            .then(() => {
+                setIsCopied(true);
+                setTimeout(() => setIsCopied(false), 1000);
+            })
+            .catch(() => {});
     }, [isDesktop]);
 
     const emailParts = CONTACT_EMAIL.split("@");
@@ -86,13 +91,19 @@ const Contact: React.FC = () => {
                         aria-label={`Send email to ${CONTACT_EMAIL}`}
                     >
                         {Array.from(beforeAt).map((char, index) => (
-                            <span key={`b-${index}`} className={styles.email_char}>
+                            <span
+                                key={`b-${index}`}
+                                className={styles.email_char}
+                            >
                                 {char}
                             </span>
                         ))}
                         <br />
                         {Array.from(afterAt).map((char, index) => (
-                            <span key={`a-${index}`} className={styles.email_char}>
+                            <span
+                                key={`a-${index}`}
+                                className={styles.email_char}
+                            >
                                 {char}
                             </span>
                         ))}

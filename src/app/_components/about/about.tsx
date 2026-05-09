@@ -21,19 +21,36 @@ const About = () => {
     useEffect(() => {
         if (!sectionRef.current || !headingRef.current) return;
 
-        const trigger = { trigger: sectionRef.current, start: "top 80%", toggleActions: "play none none none" };
+        const trigger = {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+        };
 
         const headingAnim = gsap.fromTo(
             headingRef.current,
             { opacity: 0, y: 60 },
-            { opacity: 1, y: 0, duration: 1, ease: "power2.out", scrollTrigger: trigger }
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: trigger,
+            }
         );
 
         const textAnim = textRefs.current.length
             ? gsap.fromTo(
                   textRefs.current,
                   { opacity: 0, y: 50 },
-                  { opacity: 1, y: 0, duration: 1, stagger: 0.3, ease: "power2.out", scrollTrigger: trigger }
+                  {
+                      opacity: 1,
+                      y: 0,
+                      duration: 1,
+                      stagger: 0.3,
+                      ease: "power2.out",
+                      scrollTrigger: trigger,
+                  }
               )
             : null;
 
@@ -52,14 +69,18 @@ const About = () => {
         >
             <div className={styles.about_header}>
                 <h4 className={styles.about_count}>01/</h4>
-                <h2 ref={headingRef} className={styles.about_heading}>About</h2>
+                <h2 ref={headingRef} className={styles.about_heading}>
+                    About
+                </h2>
             </div>
             <div className={styles.about_descr}>
                 <p ref={addToRefs} className={styles.about_text}>
-                    Hi there, I'm a frontend developer with a four year experience, living and working in Ukraine.
+                    Hi there, I'm a frontend developer with a four year
+                    experience, living and working in Ukraine.
                 </p>
                 <p ref={addToRefs} className={styles.about_text}>
-                    I specialize in building responsive and user-friendly web applications using modern technologies.
+                    I specialize in building responsive and user-friendly web
+                    applications using modern technologies.
                 </p>
                 <p ref={addToRefs} className={styles.about_text}>
                     Frontend developer with high communication skills, team

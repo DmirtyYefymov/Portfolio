@@ -73,7 +73,11 @@ const Hero = () => {
                         priority
                         placeholder="blur"
                         sizes="(max-width: 767px) 100vw, (max-width: 1279px) 300px, 600px"
-                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                        }}
                     />
                 </div>
 

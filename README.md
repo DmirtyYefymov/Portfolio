@@ -51,6 +51,7 @@ The project deploys automatically to Netlify on every push to `main`.
 GitHub Actions runs lint, format check, and type check on every push and pull request before the deploy proceeds.
 
 To deploy your own instance:
+
 1. Fork the repo
 2. Connect it to Netlify ("Import from Git")
 3. Netlify picks up `netlify.toml` automatically — no manual configuration needed
