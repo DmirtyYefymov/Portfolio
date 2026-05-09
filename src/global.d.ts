@@ -7,9 +7,3 @@ declare module "*.module.css" {
     const classes: { [className: string]: string };
     export default classes;
 }
-
-declare namespace React {
-    interface HTMLAttributes<T> {
-        inert?: "" | undefined;
-    }
-}

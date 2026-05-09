@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Dmytro Yefymov — Portfolio
 
-## Getting Started
+Personal portfolio website.
 
-First, run the development server:
+**Live:** [dmytroyefymov.netlify.app](https://dmytroyefymov.netlify.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Tech Stack
+
+- **Framework** — Next.js 16 (App Router, Turbopack)
+- **Language** — TypeScript
+- **Styling** — Tailwind CSS + CSS Modules
+- **Animations** — GSAP (ScrollTrigger, char-by-char text reveal)
+- **Testing** — Playwright (E2E)
+- **Deployment** — Netlify + GitHub Actions CI
+
+## Features
+
+- Smooth scroll single-page navigation (Home, About, Services, Contact)
+- GSAP-powered entrance animations and scroll-triggered transitions
+- Accessible accordion for the Services section (`aria-expanded`, keyboard nav)
+- Responsive mobile menu with keyboard and Escape key support
+- SEO: Open Graph tags, `robots.ts`, `sitemap.ts`, structured metadata
+- Security headers: `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`
+- PWA-ready: `site.webmanifest`, full favicon set (SVG, PNG, ICO, Apple Touch)
+- Optimized images: AVIF/WebP formats, `next/image` with blur placeholder
+
+## Project Structure
+
+```
+src/
+  app/
+    _components/     # Page sections: Hero, About, Services, Contact, Header, Footer
+    layout.tsx       # Root layout with metadata and fonts
+    page.tsx         # Home page
+    robots.ts        # robots.txt generation
+    sitemap.ts       # Sitemap generation
+  components/ui/     # Shared UI primitives (SplitText)
+  constants/         # Navigation items, social links, site URL
+  hooks/             # useMediaQuery, useMousePosition, useScrollPosition
+  lib/               # Utility functions
+public/
+  favicon/           # Favicon assets and site.webmanifest
+  fonts/             # PP Neue Montreal (local font)
+  images/            # Static images
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The project deploys automatically to Netlify on every push to `main`.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+GitHub Actions runs lint, format check, and type check on every push and pull request before the deploy proceeds.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To deploy your own instance:
+1. Fork the repo
+2. Connect it to Netlify ("Import from Git")
+3. Netlify picks up `netlify.toml` automatically — no manual configuration needed

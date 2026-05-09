@@ -100,7 +100,7 @@ const Header = () => {
                     isMobileMenuOpen && styles.active
                 )}
                 aria-hidden={!isMobileMenuOpen}
-                inert={!isMobileMenuOpen ? "" : undefined}
+                inert={!isMobileMenuOpen || undefined}
             >
                 <nav className={styles.mobile_nav} aria-label="Mobile navigation">
                     {NAV_ITEMS.map((item) =>
