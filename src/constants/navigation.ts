@@ -18,7 +18,7 @@ export type SocialLink = {
 export const SOCIAL_LINKS: readonly SocialLink[] = [
     {
         label: "GitHub",
-        href: "https://github.com/DmirtyYefymov",
+        href: "https://github.com/YefymovDmytro",
     },
     {
         label: "LinkedIn",
@@ -31,5 +31,5 @@ export const SOCIAL_LINKS: readonly SocialLink[] = [
 ];
 
 export const CONTACT_EMAIL = "hello.dmytro.yefymov@gmail.com";
-export const SITE_URL = "https://dmytro-yefymov.dev";
+export const SITE_URL = "https://dmytroyefymov.netlify.app/";
 export const SITE_NAME = "Dmytro Yefymov";
